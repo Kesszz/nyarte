@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>NYARTE — Materialidades Digitais · Laboratório de Experimentação Artística Digital</title>
+  <meta name="description" content="NYARTE — Laboratório de experimentação artística digital por Kesselly Pautilio. Arte Digital — Escola de Belas Artes (EBA / UFRJ) · 2026.2." />
+  <meta name="author" content="Kesselly Pautilio" />
+  <meta name="theme-color" content="#040406" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="NYARTE — Materialidades Digitais" />
+  <meta property="og:description" content="Laboratório de experimentação artística digital! Transforme o cursor em pigmento, erosão, campo gravitacional, algoritmo e luz mineral. EBA / UFRJ." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23040406'/%3E%3Cpath d='M14 48 L14 16 L36 48 L36 16 M36 32 L50 16 M36 32 L50 48' fill='none' stroke='%23C1122F' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='50' cy='32' r='4' fill='%23E4B54A'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- 1. BARRA SUPERIOR FIXA -->
+  <header id="hdr" class="hdr glass">
+    <a class="logo" href="#inicio" id="logo" aria-label="NYARTE">NYARTE</a>
+    <nav class="links" id="pageLinks" aria-label="Seções">
+      <a href="#manifesto">MANIFESTO</a>
+      <a href="#universos">CIRCULARES</a>
+    </nav>
+    <nav class="tabs" id="studioTabs" aria-label="Laboratórios"></nav>
+    <div class="acts" id="acts">
+      <button class="act" id="btnInfo" type="button">[INFO / CONCEITO]</button>
+      <button class="act" id="btnGal" type="button">[GALERIA<b id="galN"></b>]</button>
+      <button class="act" id="btnSound" type="button" aria-pressed="false">[SOM: OFF]</button>
+      <button class="act" id="btnFs" type="button">[TELA CHEIA]</button>
+    </div>
+  </header>
+
+  <main id="page">
+    <!-- 2. CAPA INICIAL (HERO) -->
+    <section id="inicio" class="hero">
+      <p class="meta reveal">INSTALAÇÃO DIGITAL INTERATIVA • EBA / UFRJ</p>
+      <h1 class="reveal"><span class="h-a">NYARTE</span></h1>
+      <p class="lead reveal">Laboratório de experimentação artística digital! Transforme o cursor em pigmento, erosão, campo gravitacional, algoritmo e luz mineral.</p>
+      <div class="cta reveal">
+        <a class="btn primary" href="#universos">CIRCULAR LABORATÓRIOS ↓</a>
+      </div>
+      <p class="coord meta">22°54′S · 43°10′W — Rio de Janeiro<br />WebGL • GLSL Shaders • HTML5 Canvas 2D • Web Audio API</p>
+      <div class="scrollcue" aria-hidden="true"><span></span></div>
+    </section>
+
+    <!-- 3. MANIFESTO -->
+    <section id="manifesto" class="sec manifesto">
+      <p class="eyebrow reveal">00 • CONCEITO CURATORIAL</p>
+      <h2 class="big reveal">MATERIALIDADES <em>DIGITAIS</em></h2>
+      <div class="cols">
+        <p class="reveal">Este Lab de NYARTE investiga a fronteira entre a fisicalidade tátil, as texturas da rua, a viscosidade densa dos pigmentos, a estrutura interna dos minerais e a dança dos algoRitmos.</p>
+        <p class="reveal">Nesta casa, pensamos em movimento. O cursor deixa de ser apenas um ponteiro de navegação para atuar como instrumento plástico, erodindo superfícies, tensionando ferrofluidos, curvando campos gravitacionais e refratando luz em cristais.</p>
+      </div>
+      <div class="credgrid reveal" style="margin-top: 44px;">
+        <div><span class="k">Autoria</span><strong>Kesselly Pautilio</strong></div>
+        <div><span class="k">Disciplina</span><strong>Arte Digital — Escola de Belas Artes (EBA / UFRJ)</strong></div>
+        <div><span class="k">Ano / Semestre</span><strong>2026.2</strong></div>
+        <div><span class="k">Tecnologias</span><strong>WebGL • GLSL Shaders • HTML5 Canvas 2D • Web Audio API</strong></div>
+      </div>
+    </section>
+
+    <!-- 4. CARDS DOS 6 LABORATÓRIOS (CIRCULARES) -->
+    <section id="universos" class="sec universos">
+      <p class="eyebrow reveal">CIRCULARES • 01 — 06</p>
+      <h2 class="big reveal">LABORATÓRIOS <em>INTERATIVOS</em></h2>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <section id="creditos" class="sec creditos" style="padding-top: 20px;">
+      <footer class="foot meta">© 2026 Kesselly Pautilio — Arte Digital — Escola de Belas Artes (EBA / UFRJ) · 2026.2</footer>
+    </section>
+  </main>
+
+  <!-- 5. ESTÚDIO TELA CHEIA -->
+  <section id="studio" class="studio" aria-label="Estúdio do laboratório" hidden>
+    <div id="stage" class="stage"></div>
+    <aside id="dock" class="dock glass">
+      <button id="dockToggle" class="dock-head" type="button" aria-expanded="true">
+        <span class="dot"></span><span id="dockTitle" class="dt">Laboratório</span><span id="dockTag" class="tag"></span><span class="chev">▾</span>
+      </button>
+      <div id="dockBody" class="dock-body">
+        <p id="dockDesc" class="desc"></p>
+        <p id="dockHint" class="hint"></p>
+        <div id="dockControls" class="controls"></div>
+        <div class="dock-actions">
+          <button id="bBackDock" class="mini" type="button">← VOLTAR</button>
+          <button id="bReset" class="mini" type="button">LIMPAR</button>
+          <button id="bVar" class="mini" type="button">ALEATÓRIO</button>
+          <button id="bCap" class="mini hot" type="button">SALVAR PNG ↓</button>
+        </div>
+      </div>
+    </aside>
+    <div id="tarot" class="tarot glass" hidden>
+      <button id="tarotClose" class="x" type="button" aria-label="Fechar carta">×</button>
+      <div class="card" id="cardEl">
+        <div class="face back"><div class="pattern"></div></div>
+        <div class="face front">
+          <span class="roman" id="tNum"></span>
+          <canvas id="tGlyph" width="220" height="220"></canvas>
+          <h3 id="tName"></h3>
+          <span class="arch" id="tArch"></span>
+          <p id="tText"></p>
+          <span class="via" id="tVia"></span>
+        </div>
+      </div>
+    </div>
+    <button id="btnBack" class="back-btn glass" type="button">← VOLTAR</button>
+    <button id="btnShowUi" class="show-ui glass" type="button" hidden>MOSTRAR INTERFACE</button>
+  </section>
+
+  <!-- 3. MODAL [INFO / CONCEITO] -->
+  <div id="infoModal" class="overlay" role="dialog" aria-modal="true" aria-labelledby="infoTitle" hidden>
+    <div class="panel glass heavy">
+      <button class="x" id="infoClose" type="button" aria-label="Fechar">×</button>
+      <div class="panel-scroll">
+        <p class="eyebrow">00 • CONCEITO CURATORIAL</p>
+        <h2 id="infoTitle" class="ptitle">MATERIALIDADES <i>DIGITAIS</i></h2>
+        <p>Este Lab de NYARTE investiga a fronteira entre a fisicalidade tátil, as texturas da rua, a viscosidade densa dos pigmentos, a estrutura interna dos minerais e a dança dos algoRitmos.</p>
+        <p>Nesta casa, pensamos em movimento. O cursor deixa de ser apenas um ponteiro de navegação para atuar como instrumento plástico, erodindo superfícies, tensionando ferrofluidos, curvando campos gravitacionais e refratando luz em cristais.</p>
+        <div class="credgrid">
+          <div><span class="k">Autoria</span><strong>Kesselly Pautilio</strong></div>
+          <div><span class="k">Disciplina</span><strong>Arte Digital — Escola de Belas Artes (EBA / UFRJ)</strong></div>
+          <div><span class="k">Ano / Semestre</span><strong>2026.2</strong></div>
+          <div><span class="k">Tecnologias</span><strong>WebGL • GLSL Shaders • HTML5 Canvas 2D • Web Audio API</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALERIA -->
+  <div id="galDrawer" class="overlay side" role="dialog" aria-modal="true" aria-labelledby="galTitle" hidden>
+    <div class="panel glass heavy drawer">
+      <button class="x" id="galClose" type="button" aria-label="Fechar galeria">×</button>
+      <p class="eyebrow">ACERVO DA SESSÃO</p>
+      <h2 id="galTitle" class="ptitle small">GALERIA</h2>
+      <div class="gal-tools"><button class="mini hot" id="galCap" type="button">+ SALVAR PNG ↓</button><button class="mini" id="galClear" type="button">LIMPAR</button></div>
+      <div id="galGrid" class="galgrid"></div>
+      <p id="galEmpty" class="empty">Nenhuma captura registrada ainda. Entre em um laboratório e clique em <strong>SALVAR PNG ↓</strong>.</p>
+    </div>
+  </div>
+
+  <button id="btnExitFs" class="exit-fs glass" type="button" hidden>SAIR DA TELA CHEIA</button>
+  <div id="toast" class="toast glass" role="status" aria-live="polite" hidden></div>
+
+  <script src="js/core.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/bg.js"></script>
+  <script src="js/labs/texture.js"></script>
+  <script src="js/labs/ferro.js"></script>
+  <script src="js/labs/cosmic.js"></script>
+  <script src="js/labs/generative.js"></script>
+  <script src="js/labs/molecular.js"></script>
+  <script src="js/labs/crystal.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
